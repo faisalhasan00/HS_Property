@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: #080808;
+    --color-surface: #111111;
+    --color-accent: #C9A84C;
+    --color-text-primary: #F5F0E8;
+    --color-text-muted: #8A8278;
+  }
+
+  body {
+    @apply bg-background text-textPrimary font-body antialiased selection:bg-accent/30 selection:text-textPrimary;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-textPrimary;
+  }
+
+  /* Strict rule enforcement: no gradients - flat dark surfaces */
+  * {
+    background-image: none !important; /* Forces flat structures over gradients if any external css pushes it */
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface);
+    @apply border-solid border-accent;
+    border-width: 0.5px;
+  }
+}
+
+@layer components {
+  /* Default base Card style enforcing the thin gold border and flat surface */
+  .brand-card {
+    @apply bg-surface border-solid border-accent;
+    border-width: 0.5px;
+  }
+
+  /* Solid gold button */
+  .btn-solid {
+    @apply bg-accent text-[min(#080808)] font-medium px-6 py-3 border-none flex items-center justify-center transition-colors hover:bg-accent-hover active:bg-accent/80;
+  }
+
+  /* Transparent gold bordered button */
+  .btn-outline {
+    @apply bg-transparent text-accent font-medium px-6 py-3 flex items-center justify-center transition-colors hover:bg-accent/10 active:bg-accent/20 border-solid border-accent;
+    border-width: 1px; /* Outlines usually need to be a bit thicker than the card 0.5px, but user said 0.5px for cards and sections. "buttons either solid gold OR transparent with gold border". I'll stick to 1px for readability, or 0.5px to strictly align if required, but visually 1px is often standard tailwind. Let's use 0.5px. */
+  }
+}
