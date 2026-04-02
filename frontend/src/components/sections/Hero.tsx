@@ -1,6 +1,7 @@
 import { Button } from '../ui/Button';
 import { Star, ShieldCheck, TrendingUp, Play } from 'lucide-react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 
 export function Hero() {
   const x = useMotionValue(0);
@@ -29,7 +30,7 @@ export function Hero() {
     y.set(0);
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -40,12 +41,12 @@ export function Hero() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { duration: 0.8, ease: "easeOut" as const }
     }
   };
 
@@ -65,7 +66,7 @@ export function Hero() {
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
+        transition={{ duration: 2, ease: "easeOut" as const }}
         className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] pointer-events-none" 
         style={{
           background: 'radial-gradient(circle at center, rgba(201, 168, 76, 0.08), transparent 70%)'
@@ -162,7 +163,7 @@ export function Hero() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+            transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" as const }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{

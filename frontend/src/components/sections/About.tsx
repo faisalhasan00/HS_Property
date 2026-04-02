@@ -1,4 +1,3 @@
-import { cn } from '../../lib/utils';
 import { useEffect, useRef } from 'react';
 
 export function About() {
