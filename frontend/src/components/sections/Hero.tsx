@@ -52,10 +52,10 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-24 pb-12 lg:pt-32">
-      
+
       {/* Background layer: Subtle gold grid pattern */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.03]" 
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(to right, #C9A84C 1px, transparent 1px), linear-gradient(to bottom, #C9A84C 1px, transparent 1px)`,
           backgroundSize: '40px 40px'
@@ -63,11 +63,11 @@ export function Hero() {
       />
 
       {/* Background layer: Soft gold radial glow */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: "easeOut" as const }}
-        className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] pointer-events-none" 
+        className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] pointer-events-none"
         style={{
           background: 'radial-gradient(circle at center, rgba(201, 168, 76, 0.08), transparent 70%)'
         }}
@@ -75,19 +75,19 @@ export function Hero() {
 
       {/* Content container */}
       <div className="container relative z-10 px-6 md:px-12 lg:px-24">
-        
-        <motion.div 
+
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center"
         >
-          
+
           {/* Left Column: Copy & Trust Elements */}
           <div className="flex flex-col items-start text-left">
-            
+
             {/* Top Trust Badge */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="inline-flex items-center gap-2 rounded-none border border-accent/40 bg-surface/50 backdrop-blur-sm px-4 py-2 mb-8 shadow-lg"
             >
@@ -113,21 +113,21 @@ export function Hero() {
 
             {/* Subtext */}
             <motion.p variants={itemVariants} className="max-w-[500px] text-base md:text-lg text-textMuted leading-relaxed font-body font-light mb-10">
-              Skip the middlemen. We shoot premium cinematic property tours and present them directly to our <strong className="font-semibold text-textPrimary">20,000+ active NRI and local buyers</strong>. 
+              Skip the middlemen. We shoot premium cinematic property tours and present them directly to our <strong className="font-semibold text-textPrimary">20,000+ active NRI and local buyers</strong>.
             </motion.p>
 
             {/* Action Buttons */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-start mb-14">
-              <Button 
-                variant="solid" 
-                size="lg" 
+              <Button
+                variant="solid"
+                size="lg"
                 className="w-full sm:w-auto rounded-none bg-accent text-[#080808] font-bold tracking-widest uppercase text-xs sm:text-sm px-8 py-5 transition-transform hover:scale-[1.02] shadow-[0_0_20px_rgba(201,168,76,0.2)]"
                 onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 View Packages
               </Button>
-              
-              <a 
+
+              <a
                 href="https://www.youtube.com/@hsproperties-hyd"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -160,7 +160,7 @@ export function Hero() {
           </div>
 
           {/* Right Column: Visual Trust Anchor */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" as const }}
@@ -173,33 +173,33 @@ export function Hero() {
             }}
             className="relative w-full aspect-video z-20"
           >
-            
+
             {/* Outline Box for depth */}
             <div className="absolute inset-0 translate-x-4 translate-y-4 border border-accent/40 z-0" />
-            
+
             {/* Main Visual Container */}
             <div className="absolute inset-0 z-10 bg-black border border-accent overflow-hidden group">
-              
+
               {/* Autoplaying Cinematic YouTube Background */}
-              <iframe 
+              <iframe
                 src="https://www.youtube.com/embed/UtlM8MzNhAA?autoplay=1&mute=1&loop=1&playlist=UtlM8MzNhAA&controls=0&showinfo=0&rel=0&modestbranding=1&vq=hd1080"
                 title="Premium Hyderabad Property"
                 className="w-full h-full scale-[1.05] opacity-100 pointer-events-none"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 style={{ border: 'none' }}
               />
-              
+
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent pointer-events-none" />
 
               {/* Floating Social Proof Tag inside the video frame */}
               <div className="absolute top-4 right-4 bg-background/90 backdrop-blur-md border border-accent/40 px-4 py-2 flex items-center gap-3 shadow-2xl pointer-events-none">
                 <Play className="w-3 h-3 fill-accent text-accent" />
                 <span className="text-xs font-body uppercase tracking-wider text-textPrimary font-bold">
-                  17.2K+ Views
+                  40.2K+ Views
                 </span>
               </div>
 
-              <motion.div 
+              <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 1.5 }}
@@ -211,10 +211,10 @@ export function Hero() {
                     Shot & Edited by HS Properties
                   </p>
                 </div>
-                <a 
-                  href="https://www.youtube.com/@hsproperties-hyd" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://www.youtube.com/@hsproperties-hyd"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-accent underline text-[10px] sm:text-xs uppercase tracking-widest font-bold hover:text-accent-hover transition-colors pointer-events-auto"
                 >
                   See Results
