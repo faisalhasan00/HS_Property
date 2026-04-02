@@ -193,9 +193,9 @@ export function Hero() {
 
               {/* Floating Social Proof Tag inside the video frame */}
               <div className="absolute top-4 right-4 bg-background/90 backdrop-blur-md border border-accent/40 px-4 py-2 flex items-center gap-3 shadow-2xl pointer-events-none">
-                <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse border border-red-500/50" />
+                <Play className="w-3 h-3 fill-accent text-accent" />
                 <span className="text-xs font-body uppercase tracking-wider text-textPrimary font-bold">
-                  LIVE: 17.2K Watching
+                  17.2K+ Views
                 </span>
               </div>
 
