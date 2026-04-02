@@ -1,6 +1,16 @@
+import { useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
+import { BookingModal } from '../ui/BookingModal';
 
 export function Pricing() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<{name: string, price: string} | null>(null);
+
+  const handleOpenModal = (name: string, price: string) => {
+    setSelectedPackage({ name, price });
+    setIsModalOpen(true);
+  };
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -78,7 +88,10 @@ export function Pricing() {
               ))}
             </ul>
             
-            <button className="w-full py-4 mt-auto bg-transparent border border-textPrimary text-textPrimary hover:border-accent hover:text-accent font-body text-[10px] tracking-widest uppercase font-bold transition-all duration-300 rounded-none">
+            <button 
+              onClick={() => handleOpenModal('Silver Package', '₹14,999')}
+              className="w-full py-4 mt-auto bg-transparent border border-textPrimary text-textPrimary hover:border-accent hover:text-accent font-body text-[10px] tracking-widest uppercase font-bold transition-all duration-300 rounded-none"
+            >
               Enquire Now
             </button>
           </motion.div>
@@ -118,7 +131,10 @@ export function Pricing() {
               ))}
             </ul>
             
-            <button className="w-full py-4 mt-auto bg-accent text-background font-bold hover:bg-accent/90 focus:outline-none font-body text-[10px] tracking-widest uppercase transition-colors duration-300 rounded-none shadow-md">
+            <button 
+              onClick={() => handleOpenModal('Gold Package', '₹24,999')}
+              className="w-full py-4 mt-auto bg-accent text-background font-bold hover:bg-accent/90 focus:outline-none font-body text-[10px] tracking-widest uppercase transition-colors duration-300 rounded-none shadow-md"
+            >
               Book This Package
             </button>
           </motion.div>
@@ -154,13 +170,22 @@ export function Pricing() {
               ))}
             </ul>
             
-            <button className="w-full py-4 mt-auto bg-transparent border border-textPrimary text-textPrimary hover:border-accent hover:text-accent font-body text-[10px] tracking-widest uppercase font-bold transition-all duration-300 rounded-none">
+            <button 
+              onClick={() => handleOpenModal('Diamond Package', '₹49,999')}
+              className="w-full py-4 mt-auto bg-transparent border border-textPrimary text-textPrimary hover:border-accent hover:text-accent font-body text-[10px] tracking-widest uppercase font-bold transition-all duration-300 rounded-none"
+            >
               Enquire Now
             </button>
           </motion.div>
 
         </motion.div>
       </div>
+
+      <BookingModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        selectedPackage={selectedPackage} 
+      />
     </section>
   );
 }
