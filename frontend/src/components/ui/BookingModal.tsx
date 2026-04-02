@@ -22,15 +22,29 @@ export function BookingModal({ isOpen, onClose, selectedPackage }: BookingModalP
   
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate short network delay then redirect to Razorpay static link
-    setTimeout(() => {
-      // TODO: Replace with the actual Razorpay Payment Link / API endpoint
+    try {
+      // 1. Save Lead quietly to Hostinger MySQL via our specific Node API Backend
+      await fetch('http://localhost:5000/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          packageName: selectedPackage?.name || 'Unknown Package',
+          packagePrice: selectedPackage?.price || '0'
+        })
+      });
+
+      // 2. Redirect to Razorpay secure checkout bridge
       window.location.href = "https://rzp.io/l/demo123";
-    }, 1200);
+    } catch (error) {
+      console.error("Booking API error. Falling back to Razorpay...", error);
+      // Force redirect so client flow isn't blocked on backend failures
+      window.location.href = "https://rzp.io/l/demo123";
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

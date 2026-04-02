@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { BookingModal } from '../ui/BookingModal';
 
 export function Pricing() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<{name: string, price: string} | null>(null);
+  const [dbSettings, setDbSettings] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/settings')
+      .then(res => res.json())
+      .then(data => setDbSettings(data))
+      .catch(console.error);
+  }, []);
 
   const handleOpenModal = (name: string, price: string) => {
     setSelectedPackage({ name, price });
@@ -67,7 +75,7 @@ export function Pricing() {
             <div className="mb-4">
               <span className="text-accent text-[10px] uppercase tracking-widest font-semibold block mb-2">Starter</span>
               <h3 className="font-heading font-bold text-3xl md:text-4xl text-textPrimary mb-2">Silver Package</h3>
-              <div className="text-accent text-3xl md:text-4xl font-heading font-bold mb-2">₹14,999</div>
+              <div className="text-accent text-3xl md:text-4xl font-heading font-bold mb-2">₹{dbSettings?.silver_price || '14999'}</div>
               <p className="text-textMuted text-[10px] font-bold uppercase tracking-widest leading-none">Best for individual sellers</p>
             </div>
             
@@ -89,7 +97,7 @@ export function Pricing() {
             </ul>
             
             <button 
-              onClick={() => handleOpenModal('Silver Package', '₹14,999')}
+              onClick={() => handleOpenModal('Silver Package', '₹' + (dbSettings?.silver_price || '14999'))}
               className="w-full py-4 mt-auto bg-transparent border border-textPrimary text-textPrimary hover:border-accent hover:text-accent font-body text-[10px] tracking-widest uppercase font-bold transition-all duration-300 rounded-none"
             >
               Enquire Now
@@ -109,7 +117,7 @@ export function Pricing() {
             <div className="mb-4 mt-2">
               <span className="text-accent text-[10px] uppercase tracking-widest font-semibold block mb-2">Standard</span>
               <h3 className="font-heading font-bold text-3xl md:text-4xl text-textPrimary mb-2">Gold Package</h3>
-              <div className="text-accent text-3xl md:text-4xl font-heading font-bold mb-2">₹24,999</div>
+              <div className="text-accent text-3xl md:text-4xl font-heading font-bold mb-2">₹{dbSettings?.gold_price || '24999'}</div>
               <p className="text-textMuted text-[10px] font-bold uppercase tracking-widest leading-none">Best for builders & dealers</p>
             </div>
             
@@ -132,7 +140,7 @@ export function Pricing() {
             </ul>
             
             <button 
-              onClick={() => handleOpenModal('Gold Package', '₹24,999')}
+              onClick={() => handleOpenModal('Gold Package', '₹' + (dbSettings?.gold_price || '24999'))}
               className="w-full py-4 mt-auto bg-accent text-background font-bold hover:bg-accent/90 focus:outline-none font-body text-[10px] tracking-widest uppercase transition-colors duration-300 rounded-none shadow-md"
             >
               Book This Package
@@ -147,7 +155,7 @@ export function Pricing() {
             <div className="mb-4">
               <span className="text-accent text-[10px] uppercase tracking-widest font-semibold block mb-2">Premium</span>
               <h3 className="font-heading font-bold text-3xl md:text-4xl text-textPrimary mb-2">Diamond Package</h3>
-              <div className="text-accent text-3xl md:text-4xl font-heading font-bold mb-2">₹49,999</div>
+              <div className="text-accent text-3xl md:text-4xl font-heading font-bold mb-2">₹{dbSettings?.diamond_price || '49999'}</div>
               <p className="text-textMuted text-[10px] font-bold uppercase tracking-widest leading-none">Best for big projects & layouts</p>
             </div>
             
@@ -171,7 +179,7 @@ export function Pricing() {
             </ul>
             
             <button 
-              onClick={() => handleOpenModal('Diamond Package', '₹49,999')}
+              onClick={() => handleOpenModal('Diamond Package', '₹' + (dbSettings?.diamond_price || '49999'))}
               className="w-full py-4 mt-auto bg-transparent border border-textPrimary text-textPrimary hover:border-accent hover:text-accent font-body text-[10px] tracking-widest uppercase font-bold transition-all duration-300 rounded-none"
             >
               Enquire Now

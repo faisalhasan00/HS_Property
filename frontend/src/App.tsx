@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Hero } from './components/sections/Hero';
@@ -11,8 +12,9 @@ import { Testimonials } from './components/sections/Testimonials';
 import { FAQ } from './components/sections/FAQ';
 import { Contact } from './components/sections/Contact';
 import { WhatsAppButton } from './components/ui/WhatsAppButton';
+import { AdminDashboard } from './components/admin/AdminDashboard';
 
-function App() {
+function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -31,6 +33,17 @@ function App() {
       <Footer />
       <WhatsAppButton />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/admin/*" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
