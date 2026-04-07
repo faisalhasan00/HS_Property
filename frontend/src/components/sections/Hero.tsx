@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, type Variants, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Button } from '../ui/Button';
 import { Star, ShieldCheck, TrendingUp, Play } from 'lucide-react';
+import { getYouTubeEmbedUrl } from '../../lib/utils';
 
 export function Hero() {
   const [dbSettings, setDbSettings] = useState<any>(null);
@@ -191,7 +192,7 @@ export function Hero() {
 
               {/* Autoplaying Cinematic YouTube Background */}
               <iframe
-                src={dbSettings?.hero_video_url || "https://www.youtube.com/embed/UtlM8MzNhAA?autoplay=1&mute=1&loop=1&playlist=UtlM8MzNhAA&controls=0&showinfo=0&rel=0&modestbranding=1&vq=hd1080"}
+                src={getYouTubeEmbedUrl(dbSettings?.hero_video_url) || "https://www.youtube.com/embed/UtlM8MzNhAA?autoplay=1&mute=1&loop=1&playlist=UtlM8MzNhAA&controls=0&showinfo=0&rel=0&modestbranding=1&vq=hd1080"}
                 title="Premium Hyderabad Property"
                 className="w-full h-full scale-[1.05] opacity-100 pointer-events-none"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
